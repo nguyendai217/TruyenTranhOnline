@@ -1,4 +1,5 @@
 package com.example.truyentranhonline.activity;
+
 import android.app.ProgressDialog;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Toast;
+
 import com.example.truyentranhonline.Common;
 import com.example.truyentranhonline.R;
 import com.example.truyentranhonline.adapter.ComicAdapter;
@@ -35,18 +37,20 @@ public class ReadComicActivity extends AppCompatActivity implements IComicLoadDo
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_read_comic);
         comics = FirebaseDatabase.getInstance().getReference("Comic");
-        comicListener= this;
+        comicListener = this;
         initViews();
         controls();
     }
+
     private void initViews() {
-        recyclerViewComic=findViewById(R.id.recycler_comic);
-        toolbar= findViewById(R.id.toolbar_readcomic);
+        recyclerViewComic = findViewById(R.id.recycler_comic);
+        toolbar = findViewById(R.id.toolbar_readcomic);
     }
+
     private void controls() {
         loadComic();
         recyclerViewComic.setHasFixedSize(true);
-        recyclerViewComic.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
+        recyclerViewComic.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
         getSupportActionBar().setTitle("Danh sách truyện");
@@ -64,18 +68,20 @@ public class ReadComicActivity extends AppCompatActivity implements IComicLoadDo
         recyclerViewComic.setAdapter(new ComicAdapter(getBaseContext(), listComic));
         progressDialog.dismiss();
     }
-    private void loadComic(){
 
-        progressDialog= new ProgressDialog(this);
+    private void loadComic() {
+
+        progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Please wait...");
         progressDialog.show();
 
         comics.addListenerForSingleValueEvent(new ValueEventListener() {
-            List<Comic> comicLoad= new ArrayList<>();
+            List<Comic> comicLoad = new ArrayList<>();
+
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot comicSnapshot: dataSnapshot.getChildren()){
-                    Comic comic= comicSnapshot.getValue(Comic.class);
+                for (DataSnapshot comicSnapshot : dataSnapshot.getChildren()) {
+                    Comic comic = comicSnapshot.getValue(Comic.class);
                     comicLoad.add(comic);
                 }
                 comicListener.onComicLoadDoneListener(comicLoad);
@@ -83,7 +89,7 @@ public class ReadComicActivity extends AppCompatActivity implements IComicLoadDo
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(ReadComicActivity.this, " " +databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(ReadComicActivity.this, " " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
