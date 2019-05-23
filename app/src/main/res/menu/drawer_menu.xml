@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_home"
+        android:title="Home"
+        
+        android:icon="@drawable/ic_home_black_24dp"/>
+    <item
+        android:id="@+id/read_comic"
+        android:title="Đọc truyện"
+        android:icon="@drawable/ic_chrome_reader_mode_black_24dp"/>
+    <item
+        android:id="@+id/like_comic"
+        android:title="Truyện đã thích"
+        android:icon="@drawable/ic_favorite_black_24dp"
+        />
+    <item
+        android:id="@+id/share"
+        android:title="Chia sẻ"
+        android:icon="@drawable/ic_share_black_24dp"
+        />
+    <item
+        android:id="@+id/setting"
+        android:title="Cài đặt"
+        android:icon="@drawable/ic_settings_black_24dp"
+        />
+    <item
+        android:id="@+id/information"
+        android:title="Thông tin"
+        android:icon="@drawable/ic_info_black_24dp"
+        />
+</menu>

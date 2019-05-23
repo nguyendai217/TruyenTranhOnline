@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "602608443076",
+    "firebase_url": "https://truyentranhonline-8b44c.firebaseio.com",
+    "project_id": "truyentranhonline-8b44c",
+    "storage_bucket": "truyentranhonline-8b44c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:602608443076:android:cc867ef9f57862ae",
+        "android_client_info": {
+          "package_name": "com.example.truyentranhonline"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "602608443076-i29omukc2t13aou2eov0b2miqldhb4bk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.truyentranhonline",
+            "certificate_hash": "5ddaa74b2faf8b8b2fad9c0c4e0a1c50f405e450"
+          }
+        },
+        {
+          "client_id": "602608443076-hv99im05np4evk89o5svsu5u48v0o9l6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQ3HvQMNAZZpQOigIVwOFe5GtCEypubYw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "602608443076-hv99im05np4evk89o5svsu5u48v0o9l6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
