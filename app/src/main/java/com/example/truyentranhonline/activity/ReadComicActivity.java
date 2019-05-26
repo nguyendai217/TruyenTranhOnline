@@ -1,6 +1,7 @@
 package com.example.truyentranhonline.activity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.truyentranhonline.Common;
@@ -27,6 +29,7 @@ import java.util.List;
 public class ReadComicActivity extends AppCompatActivity implements IComicLoadDone {
     ArrayList<Comic> comicList;
     RecyclerView recyclerViewComic;
+    ImageView imvSearch;
     DatabaseReference comics;
     IComicLoadDone comicListener;
     ProgressDialog progressDialog;
@@ -45,6 +48,7 @@ public class ReadComicActivity extends AppCompatActivity implements IComicLoadDo
     private void initViews() {
         recyclerViewComic = findViewById(R.id.recycler_comic);
         toolbar = findViewById(R.id.toolbar_readcomic);
+        imvSearch=findViewById(R.id.imv_search);
     }
 
     private void controls() {
@@ -60,8 +64,15 @@ public class ReadComicActivity extends AppCompatActivity implements IComicLoadDo
                 finish();
             }
         });
+        imvSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(ReadComicActivity.this, SearchActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            }
+        });
     }
-
     @Override
     public void onComicLoadDoneListener(List<Comic> listComic) {
         Common.listComic = listComic;
