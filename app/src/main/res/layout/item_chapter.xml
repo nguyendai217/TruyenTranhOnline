@@ -8,15 +8,14 @@
         android:id="@+id/tv_chapter_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawableRight="@drawable/ic_chevron_right_black_24dp"
+        android:drawableRight="@drawable/ic_chevron_right_black_27dp"
         android:padding="10dp"
         android:text="Chapter 1"
         android:textColor="#0C0C0C"
         android:textSize="20sp"
         android:textStyle="bold" />
     <TextView
-        android:background="#0C0C0C"
         android:layout_width="match_parent"
-        android:layout_height="2dp" />
-
+        android:layout_height="2dp"
+        android:background="#0C0C0C" />
 </LinearLayout>

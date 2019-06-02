@@ -19,6 +19,7 @@ public class DetailComicActivity extends AppCompatActivity {
     private ImageView imvComic;
     private TextView tvName, tvCategory, tvDescription;
     private Button btnReadComic;
+    private ImageView imvLike;
     DatabaseReference comics;
 
     @Override
@@ -37,6 +38,7 @@ public class DetailComicActivity extends AppCompatActivity {
         tvCategory = findViewById(R.id.tv_category);
         tvDescription = findViewById(R.id.tv_description);
         btnReadComic = findViewById(R.id.btn_read);
+        imvLike = findViewById(R.id.imv_like);
     }
 
     private void controls() {
@@ -63,10 +65,17 @@ public class DetailComicActivity extends AppCompatActivity {
         btnReadComic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(DetailComicActivity.this,ChapterActivity.class);
+                Intent intent = new Intent(DetailComicActivity.this, ChapterActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 finish();
+            }
+        });
+
+        imvLike.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imvLike.setImageResource(R.drawable.ic_favorite_red_24dp);
             }
         });
     }

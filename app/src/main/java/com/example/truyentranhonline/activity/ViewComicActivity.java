@@ -1,5 +1,4 @@
 package com.example.truyentranhonline.activity;
-
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -64,6 +63,7 @@ public class ViewComicActivity extends AppCompatActivity implements View.OnClick
     }
 
     private void fetchLinks(Chapter chapter) {
+
         if (chapter.Links != null) {
             if (chapter.Links.size() > 0) {
                 ViewPagerAdapter pagerAdapter = new ViewPagerAdapter(getBaseContext(), chapter.Links);
