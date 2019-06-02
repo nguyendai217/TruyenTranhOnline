@@ -3,8 +3,18 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <TextView
+        android:textColor="#111010"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:text="Tìm kiếm "
+        android:id="@+id/tv_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
     <EditText
-        android:hint="Enter comic name "
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/tv_search"
+        android:hint="Enter comic name"
         android:id="@+id/edt_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

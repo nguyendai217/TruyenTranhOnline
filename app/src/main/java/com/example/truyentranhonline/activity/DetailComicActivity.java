@@ -42,11 +42,11 @@ public class DetailComicActivity extends AppCompatActivity {
     }
 
     private void controls() {
-        Bundle bundle = getIntent().getExtras();
-        String tv_name = bundle.getString("name");
-        String tv_category = bundle.getString("category");
+        final Bundle bundle = getIntent().getExtras();
+        final String tv_name = bundle.getString("name");
+        final String tv_category = bundle.getString("category");
         String tv_des = bundle.getString("description");
-        String url_image = bundle.getString("image");
+        final String url_image = bundle.getString("image");
         Picasso.get().load(url_image).into(imvComic);
         tvName.setText(tv_name);
         tvCategory.setText(tv_category);
@@ -76,6 +76,18 @@ public class DetailComicActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 imvLike.setImageResource(R.drawable.ic_favorite_red_24dp);
+
+                Intent intent= new Intent(DetailComicActivity.this,LikeComicActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                Bundle bundle1= new Bundle();
+                bundle1.putString("name",tv_name);
+                bundle1.putString("image",url_image);
+                bundle1.putString("category",tv_category);
+
+                intent.putExtras(bundle1);
+                startActivity(intent);
+
             }
         });
     }

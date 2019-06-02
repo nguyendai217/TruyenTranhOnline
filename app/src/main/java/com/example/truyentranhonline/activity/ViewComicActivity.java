@@ -1,4 +1,5 @@
 package com.example.truyentranhonline.activity;
+import android.app.ProgressDialog;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ public class ViewComicActivity extends AppCompatActivity implements View.OnClick
     private ImageView imvNext, imvPrev;
     private TextView tvChapterName;
     private ViewPager viewPager;
+    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +50,6 @@ public class ViewComicActivity extends AppCompatActivity implements View.OnClick
                 } else {
                     Common.chapterIndex++;
                     fetchLinks(Common.chapterList.get(Common.chapterIndex));
-
                 }
                 break;
             case R.id.imv_prev:
@@ -65,9 +66,13 @@ public class ViewComicActivity extends AppCompatActivity implements View.OnClick
     private void fetchLinks(Chapter chapter) {
 
         if (chapter.Links != null) {
+            progressDialog= new ProgressDialog(this);
+            progressDialog.setTitle("Please wait..");
+            progressDialog.show();
             if (chapter.Links.size() > 0) {
                 ViewPagerAdapter pagerAdapter = new ViewPagerAdapter(getBaseContext(), chapter.Links);
                 viewPager.setAdapter(pagerAdapter);
+                progressDialog.dismiss();
                 tvChapterName.setText(Common.formatString(Common.chapterSelected.Name));
             } else {
                 Toast.makeText(this, "Chapter trống", Toast.LENGTH_SHORT).show();
@@ -75,6 +80,5 @@ public class ViewComicActivity extends AppCompatActivity implements View.OnClick
         } else {
             Toast.makeText(this, "Chapter trống", Toast.LENGTH_SHORT).show();
         }
-
     }
 }

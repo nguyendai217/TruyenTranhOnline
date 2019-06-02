@@ -1,4 +1,5 @@
 package com.example.truyentranhonline.fragment;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 
 import com.example.truyentranhonline.activity.LikeComicActivity;
 import com.example.truyentranhonline.R;
+import com.example.truyentranhonline.activity.NoteActivity;
 import com.example.truyentranhonline.activity.ReadComicActivity;
 
 /**
@@ -21,7 +23,7 @@ import com.example.truyentranhonline.activity.ReadComicActivity;
  * create an instance of this fragment.
  */
 public class HomeFragment extends Fragment implements View.OnClickListener {
-    private ImageView imvReadComic, imvLikeComic, imvSetting, imvInformation;
+    private ImageView imvReadComic, imvLikeComic, imvNote, imvInformation;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -31,6 +33,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -42,14 +45,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         imvReadComic = getActivity().findViewById(R.id.imv_reading);
         imvLikeComic = getActivity().findViewById(R.id.imv_booklike);
         imvInformation = getActivity().findViewById(R.id.imv_information);
-        imvSetting = getActivity().findViewById(R.id.imv_setting);
+        imvNote = getActivity().findViewById(R.id.imv_note);
     }
 
     private void controls() {
         imvReadComic.setOnClickListener(this);
         imvLikeComic.setOnClickListener(this);
         imvInformation.setOnClickListener(this);
-        imvSetting.setOnClickListener(this);
+        imvNote.setOnClickListener(this);
     }
 
     @Override
@@ -57,6 +60,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -77,8 +81,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
                 break;
-            case R.id.imv_setting:
-                Toast.makeText(getContext(), "Setting", Toast.LENGTH_SHORT).show();
+            case R.id.imv_note:
+                Intent intent2 = new Intent(getContext(), NoteActivity.class);
+                intent2.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent2);
                 break;
         }
     }
