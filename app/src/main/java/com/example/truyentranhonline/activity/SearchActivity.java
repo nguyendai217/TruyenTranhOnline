@@ -46,10 +46,8 @@ public class SearchActivity extends AppCompatActivity {
             }
         });
     }
-
     private void showSearchDialog() {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(SearchActivity.this);
-        alertDialog.setTitle("Search");
         LayoutInflater inflater = this.getLayoutInflater();
         View view = inflater.inflate(R.layout.dialog_search, null);
         final EditText edtSearch = view.findViewById(R.id.edt_search);
@@ -82,6 +80,5 @@ public class SearchActivity extends AppCompatActivity {
         } else {
             Toast.makeText(this, "Không có truyện !", Toast.LENGTH_SHORT).show();
         }
-
     }
 }
