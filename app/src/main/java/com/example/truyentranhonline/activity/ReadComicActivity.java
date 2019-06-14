@@ -27,7 +27,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ReadComicActivity extends AppCompatActivity implements IComicLoadDone {
-    ArrayList<Comic> comicList;
     RecyclerView recyclerViewComic;
     ImageView imvSearch;
     DatabaseReference comics;

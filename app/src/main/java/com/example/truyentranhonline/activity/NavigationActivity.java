@@ -1,5 +1,6 @@
 package com.example.truyentranhonline.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -15,7 +16,9 @@ import com.example.truyentranhonline.R;
 import com.example.truyentranhonline.fragment.HomeFragment;
 import com.example.truyentranhonline.fragment.InformationFragment;
 
-public class NavigationActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class NavigationActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
+
     DrawerLayout mDrawer;
     ActionBarDrawerToggle mToggle;
 
@@ -55,8 +58,30 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
         if (mDrawer.isDrawerOpen(GravityCompat.START)) {
             mDrawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            //super.onBackPressed();
+            showDialog();
         }
+
+    }
+    private void showDialog() {
+        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
+        builder.setTitle("Thông báo !");
+        builder.setMessage("Bạn có muốn thoát hay không ?");
+        builder.setCancelable(false);
+        builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+              finish();
+            }
+        });
+        builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        android.app.AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 
     @Override

@@ -8,8 +8,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.truyentranhonline.R;
+import com.example.truyentranhonline.model.Like;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
@@ -20,13 +23,16 @@ public class DetailComicActivity extends AppCompatActivity {
     private TextView tvName, tvCategory, tvDescription;
     private Button btnReadComic;
     private ImageView imvLike;
-    DatabaseReference comics;
+    DatabaseReference comics, likes;
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_comic);
+        mAuth= FirebaseAuth.getInstance();
         comics = FirebaseDatabase.getInstance().getReference("Comic");
+        likes= FirebaseDatabase.getInstance().getReference("Likes");
         initViews();
         controls();
     }
@@ -76,16 +82,13 @@ public class DetailComicActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 imvLike.setImageResource(R.drawable.ic_favorite_red_24dp);
+                String id= likes.push().getKey();
+                Like like= new Like(id,tv_name,url_image,tv_category);
+                likes.child(id).setValue(like);
+                Toast.makeText(DetailComicActivity.this, "Thêm vào truyên đã thich", Toast.LENGTH_SHORT).show();
 
                 Intent intent= new Intent(DetailComicActivity.this,LikeComicActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
-                Bundle bundle1= new Bundle();
-                bundle1.putString("name",tv_name);
-                bundle1.putString("image",url_image);
-                bundle1.putString("category",tv_category);
-
-                intent.putExtras(bundle1);
                 startActivity(intent);
 
             }
