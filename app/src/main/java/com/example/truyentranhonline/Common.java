@@ -13,12 +13,6 @@ public class Common {
     public static Comic commicSelected;
     public static List<Chapter> chapterList= new ArrayList<>();
     public static Chapter chapterSelected;
-    public static int chapterIndex=-1;
     public static List<Like> listComicLike= new ArrayList<>();
 
-
-    public static String formatString(String name) {
-        StringBuilder stringBuilder= new StringBuilder(name.length()>15?name.substring(0,15)+"...":name);
-        return stringBuilder.toString();
-    }
 }

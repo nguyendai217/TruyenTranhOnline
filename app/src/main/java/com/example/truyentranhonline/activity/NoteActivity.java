@@ -116,6 +116,8 @@ public class NoteActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
+
         FirebaseRecyclerAdapter<Note, MyViewHolder> adapter = new FirebaseRecyclerAdapter<Note, MyViewHolder>(
                 Note.class, R.layout.item_note, MyViewHolder.class, mreference
         ) {

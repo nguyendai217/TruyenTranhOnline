@@ -6,12 +6,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.truyentranhonline.R;
 import com.example.truyentranhonline.model.Note;
-import com.google.firebase.database.DatabaseReference;
+
 
 import java.util.List;
 

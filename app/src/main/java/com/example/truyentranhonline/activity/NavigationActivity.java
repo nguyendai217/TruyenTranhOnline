@@ -38,6 +38,7 @@ public class NavigationActivity extends AppCompatActivity
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        // setup fragment Home là màn hình chính
         if (savedInstanceState == null) {
             getSupportActionBar().setTitle("Home");
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
@@ -53,6 +54,7 @@ public class NavigationActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+    // hàm khi click vào tùy chọn trở về
     @Override
     public void onBackPressed() {
         if (mDrawer.isDrawerOpen(GravityCompat.START)) {
@@ -63,6 +65,7 @@ public class NavigationActivity extends AppCompatActivity
         }
 
     }
+    // thiết lập dialog hiển thị khi muốn thoát
     private void showDialog() {
         android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
         builder.setTitle("Thông báo !");
@@ -84,6 +87,7 @@ public class NavigationActivity extends AppCompatActivity
         alertDialog.show();
     }
 
+    // lựa chọn các tùy chọn của navigation
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()) {

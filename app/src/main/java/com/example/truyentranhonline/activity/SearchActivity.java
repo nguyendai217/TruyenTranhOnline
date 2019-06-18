@@ -31,11 +31,15 @@ public class SearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search);
         toolbar = findViewById(R.id.toolbar_search);
         recyclerViewSearch = findViewById(R.id.recycler_search);
+
+        // set up recycler view
         recyclerViewSearch.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         ((LinearLayoutManager) layoutManager).setOrientation(LinearLayoutManager.VERTICAL);
         recyclerViewSearch.setLayoutManager(layoutManager);
         showSearchDialog();
+
+        // setup toolbar
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Search");
@@ -68,6 +72,7 @@ public class SearchActivity extends AppCompatActivity {
         edtSearch.setFocusable(true);
     }
 
+    // doc du lieu tu query search
     private void fetchComic(String query) {
         List<Comic> comicSearch = new ArrayList<>();
         for (Comic comic : Common.listComic) {

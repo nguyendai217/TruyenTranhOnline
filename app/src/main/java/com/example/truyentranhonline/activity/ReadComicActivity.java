@@ -52,8 +52,7 @@ public class ReadComicActivity extends AppCompatActivity implements IComicLoadDo
 
     private void controls() {
         loadComic();
-        recyclerViewComic.setHasFixedSize(true);
-        recyclerViewComic.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
         getSupportActionBar().setTitle("Danh sách truyện");
@@ -71,6 +70,10 @@ public class ReadComicActivity extends AppCompatActivity implements IComicLoadDo
                 startActivity(intent);
             }
         });
+
+        // setup recycler view
+        recyclerViewComic.setHasFixedSize(true);
+        recyclerViewComic.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
     }
     @Override
     public void onComicLoadDoneListener(List<Comic> listComic) {
@@ -88,13 +91,14 @@ public class ReadComicActivity extends AppCompatActivity implements IComicLoadDo
         comics.addListenerForSingleValueEvent(new ValueEventListener() {
             List<Comic> comicLoad = new ArrayList<>();
 
+            // lay du lieu tu firebase về
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot comicSnapshot : dataSnapshot.getChildren()) {
                     Comic comic = comicSnapshot.getValue(Comic.class);
                     comicLoad.add(comic);
                 }
-                comicListener.onComicLoadDoneListener(comicLoad);
+                comicListener.onComicLoadDoneListener(comicLoad); // phương thuc bắt sư kien khi click vào 1 truyen
             }
 
             @Override

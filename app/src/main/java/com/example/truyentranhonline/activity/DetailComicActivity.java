@@ -30,13 +30,14 @@ public class DetailComicActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_comic);
-        mAuth= FirebaseAuth.getInstance();
-        comics = FirebaseDatabase.getInstance().getReference("Comic");
-        likes= FirebaseDatabase.getInstance().getReference("Likes");
+        mAuth= FirebaseAuth.getInstance();   // ket noi toi csdl firebase
+        comics = FirebaseDatabase.getInstance().getReference("Comic"); // lấy dữ liệu tại nhánh Comic
+        likes= FirebaseDatabase.getInstance().getReference("Likes");  // lấy dữ liệu tại nhánh Likes
         initViews();
         controls();
     }
 
+    // ánh xạ thuộc tính của các controler đã sử dung
     private void initViews() {
         toolbar = findViewById(R.id.toolbar_detail);
         imvComic = findViewById(R.id.imv_detail_comic);
@@ -48,16 +49,17 @@ public class DetailComicActivity extends AppCompatActivity {
     }
 
     private void controls() {
-        final Bundle bundle = getIntent().getExtras();
+        final Bundle bundle = getIntent().getExtras();  // dữ liệu từ bên màn hình đọc truyện
         final String tv_name = bundle.getString("name");
         final String tv_category = bundle.getString("category");
         String tv_des = bundle.getString("description");
         final String url_image = bundle.getString("image");
-        Picasso.get().load(url_image).into(imvComic);
-        tvName.setText(tv_name);
+        Picasso.get().load(url_image).into(imvComic);   // sử dụng thư viện picasso để load ảnh
+        tvName.setText(tv_name); // gán các dữ liệu đã lấy đc từ màn hình đọc truyện
         tvCategory.setText(tv_category);
         tvDescription.setText(tv_des);
 
+        // thiết lập thông số thanh toolbar
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(tv_name);
@@ -68,12 +70,13 @@ public class DetailComicActivity extends AppCompatActivity {
             }
         });
 
+        // setup hiển thị màn hình chapter khi click vào button
         btnReadComic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(DetailComicActivity.this, ChapterActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // khai báo cho hệ thống biết chuẩn bị có màn hình mới
+                startActivity(intent); // thực hiện chuyển màn hình
                 finish();
             }
         });

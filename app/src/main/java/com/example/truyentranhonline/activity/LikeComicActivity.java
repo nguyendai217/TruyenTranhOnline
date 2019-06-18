@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Toast;
+
 import com.example.truyentranhonline.R;
 import com.example.truyentranhonline.adapter.LikeComicAdapter;
 import com.example.truyentranhonline.model.Like;
@@ -21,7 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LikeComicActivity extends AppCompatActivity{
+public class LikeComicActivity extends AppCompatActivity {
     Toolbar toolbar;
     RecyclerView recyclerViewLikeComic;
     DatabaseReference likes;
@@ -33,9 +34,11 @@ public class LikeComicActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_like_comic);
-        recyclerViewLikeComic=findViewById(R.id.recyclerview_likeComic);
+
+        recyclerViewLikeComic = findViewById(R.id.recyclerview_likeComic);
         likes = FirebaseDatabase.getInstance().getReference("Likes");
         toolbar = findViewById(R.id.toolbar_likeComic);
+
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Truyện đã thích");
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
@@ -45,24 +48,25 @@ public class LikeComicActivity extends AppCompatActivity{
                 finish();
             }
         });
+
         // load du lieu hien thi len recyclerview
         recyclerViewLikeComic.setHasFixedSize(true);
         recyclerViewLikeComic.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        comicLike= new ArrayList<>();
+        comicLike = new ArrayList<>();
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Please wait...");
         progressDialog.show();
 
-        likes.addListenerForSingleValueEvent(new ValueEventListener() {
+        likes.addListenerForSingleValueEvent(new ValueEventListener() { // lay dư lieu tu firebase ve
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()){
-                    for (DataSnapshot snapshot :dataSnapshot.getChildren()){
-                        Like like= snapshot.getValue(Like.class);
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        Like like = snapshot.getValue(Like.class);
                         comicLike.add(like);
                     }
-                    likeComicAdapter= new LikeComicAdapter(comicLike,getBaseContext());
+                    likeComicAdapter = new LikeComicAdapter(comicLike, getBaseContext());
                     recyclerViewLikeComic.setAdapter(likeComicAdapter);
                     progressDialog.dismiss();
                 }
@@ -70,7 +74,7 @@ public class LikeComicActivity extends AppCompatActivity{
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(LikeComicActivity.this, ""+ databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(LikeComicActivity.this, "" + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 

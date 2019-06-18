@@ -1,7 +1,6 @@
 package com.example.truyentranhonline.adapter;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.truyentranhonline.R;
-import com.example.truyentranhonline.model.Comic;
+
 import com.example.truyentranhonline.model.Like;
 import com.squareup.picasso.Picasso;
 
@@ -36,11 +35,12 @@ public class LikeComicAdapter extends RecyclerView.Adapter<LikeComicAdapter.Comi
     @Override
     public void onBindViewHolder(@NonNull ComicViewHolder comicViewHolder, int i) {
 
-        Like like= comicLike.get(i);
+        Like like = comicLike.get(i);
 
         Picasso.get().load(like.getImvcomic()).into(comicViewHolder.imvComic);
         comicViewHolder.tvName.setText(like.getName());
         comicViewHolder.tvCategory.setText(like.getCategory());
+
 
     }
 
@@ -49,7 +49,7 @@ public class LikeComicAdapter extends RecyclerView.Adapter<LikeComicAdapter.Comi
         return comicLike.size();
     }
 
-    public class ComicViewHolder extends RecyclerView.ViewHolder {
+    public class ComicViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView imvComic;
         TextView tvName, tvCategory;
 
@@ -58,6 +58,14 @@ public class LikeComicAdapter extends RecyclerView.Adapter<LikeComicAdapter.Comi
             imvComic = itemView.findViewById(R.id.imv_comic);
             tvName = itemView.findViewById(R.id.tv_name);
             tvCategory = itemView.findViewById(R.id.tv_category1);
+        }
+
+        public void setItemClick(View.OnClickListener onClickListener) {
+        }
+
+        @Override
+        public void onClick(View v) {
+
         }
     }
 }
